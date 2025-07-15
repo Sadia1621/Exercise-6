@@ -1,0 +1,584 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Website</title>
+    <style>
+       
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Times New Roman, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            display: grid;
+            grid-template-areas: 
+                "header header header"
+                "navbar navbar navbar"
+                "sidebar-left content sidebar-right"
+                "footer footer footer";
+            grid-template-columns: 200px 1fr 200px;
+            grid-template-rows: auto auto 1fr auto;
+            min-height: 100vh;
+            gap: 2px;
+        }
+
+        .header {
+            grid-area: header;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .navbar {
+            grid-area: navbar;
+            background: #2c3e50;
+            padding: 0;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar li {
+            margin: 0 2px;
+        }
+
+        .navbar a {
+            display: block;
+            padding: 15px 30px;
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .navbar a:hover, .navbar a.active {
+            background: #34495e;
+        }
+
+        .sidebar-left {
+            grid-area: sidebar-left;
+            background: #ecf0f1;
+            padding: 20px;
+        }
+
+        .sidebar-left h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+        }
+
+        .sidebar-left ul {
+            list-style: none;
+        }
+
+        .sidebar-left li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar-left a {
+            color: #34dbca;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .sidebar-left a:hover {
+            color: #2980b9;
+        }
+
+        .content {
+            grid-area: content;
+            background: white;
+            padding: 30px;
+            max-width: 100%;
+            overflow-wrap: break-word;
+        }
+
+        .content h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .sidebar-right {
+            grid-area: sidebar-right;
+            background: #f8f9fa;
+            padding: 20px;
+        }
+
+        .sidebar-right h3 {
+            color: #23364a;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .form-group textarea {
+            height: 80px;
+            resize: vertical;
+        }
+
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 10px;
+            transition: background 0.3s;
+        }
+
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2980b9;
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+
+        .footer {
+            grid-area: footer;
+            background: #34495e;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #3498db;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .footer a:hover {
+            color: #2980b9;
+        }
+
+        .portfolio-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .portfolio-table th, .portfolio-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .portfolio-table th {
+            background: #3498db;
+            color: white;
+            font-weight: bold;
+        }
+
+        .portfolio-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .portfolio-table tr:hover {
+            background: #e8f4f8;
+        }
+
+        /* Trivia specific styles */
+        .trivia-container {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        .input-group input {
+            width: 200px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .result.show {
+            display: block;
+        }
+
+        .result.normal {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .result.underweight {
+            background: #cce7ff;
+            color: #004085;
+            border: 1px solid #b0d4f1;
+        }
+
+        .result.overweight {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        .result.obese {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-areas: 
+                    "header"
+                    "navbar"
+                    "content"
+                    "sidebar-left"
+                    "sidebar-right"
+                    "footer";
+                grid-template-columns: 1fr;
+            }
+            
+            .navbar ul {
+                flex-direction: column;
+            }
+            
+            .navbar li {
+                margin: 1px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Islam Sadia</h1>
+            <p>Welcome to My Personal Website</p>
+        </header>
+
+        <nav class="navbar">
+            <ul>
+                <li><a href="#" id="home-link" class="active">Home</a></li>
+                <li><a href="#" id="portfolio-link">Portfolio</a></li>
+                <li><a href="#" id="trivia-link">Trivia</a></li>
+            </ul>
+        </nav>
+
+        <aside class="sidebar-left">
+            <h3>Useful Links</h3>
+            <ul>
+                <li><a href="https://github.com" target="_blank">GitHub</a></li>
+                <li><a href="https://stackoverflow.com" target="_blank">Stack Overflow</a></li>
+                <li><a href="https://developer.mozilla.org" target="_blank">MDN Web Docs</a></li>
+                <li><a href="https://www.w3schools.com" target="_blank">W3Schools</a></li>
+                <li><a href="https://codecademy.com" target="_blank">Codecademy</a></li>
+                <li><a href="https://freecodecamp.org" target="_blank">freeCodeCamp</a></li>
+            </ul>
+        </aside>
+
+        <main class="content" id="main-content">
+            <div id="home-page">
+                <h2>About Me</h2>
+                <img src="" alt="Profile picture" style="float: right; margin-left: 20px; width: 300px;">
+                <p>Hello! I'm Sadia Islam and ISSE student at Ritsumeikan University. My journey into technology began during high school when I first discovered the power of coding. What started as curiosity about how websites work has evolved into a deep love for creating digital solutions that make people's lives easier.</p>
+                
+                <p> My interests extend beyond just coding – I'm fascinated by apps design, artificial intelligence, and the intersection of technology with social impact. When I'm not coding, you can find me exploring Kyoto's beautiful temples, or experimenting with new cooking recipes.</p>
+                
+                <p>I believe that technology should be accessible and meaningful. Through my projects, I strive to create applications that not only function well but also provide genuine value to users. I'm always eager to learn new technologies and collaborate with others who share my passion for innovation.</p>
+                
+                <p>Feel free to browse through my portfolio to see some of my work, or try out the trivia game I created! </p>
+            </div>
+
+           
+            <div id="portfolio-page" style="display: none;">
+                <h2>My Portfolio</h2>
+                <p>Here are some of my notable projects and achievements:</p>
+                
+                <table class="portfolio-table">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Project Name</th>
+                            <th>Description</th>
+                            <th>Date</th>
+                            <th>Technology</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>E-Commerce Website</td>
+                            <td>A full-stack online shopping platform with user authentication, product catalog, and payment integration</td>
+                            <td>Dec 2024</td>
+                            <td>React, Node.js, MongoDB</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Task Management App</td>
+                            <td>A productivity application with real-time collaboration features and progress tracking</td>
+                            <td>Oct 2024</td>
+                            <td>Vue.js, Firebase</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Weather Dashboard</td>
+                            <td>Interactive weather application with location-based forecasts and data visualization</td>
+                            <td>Aug 2024</td>
+                            <td>JavaScript, Chart.js, API</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Photography Portfolio</td>
+                            <td>Responsive gallery website with image optimization and social media integration</td>
+                            <td>Mar 2024</td>
+                            <td>HTML5, CSS3, JavaScript</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Mobile Game App</td>
+                            <td>Educational puzzle game for children with progress tracking and achievements</td>
+                            <td>Jan 2024</td>
+                            <td>React Native, SQLite</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            
+            <div id="trivia-page" style="display: none;">
+                <h2>BMI Calculator</h2>
+                <p>Calculate your Body Mass Index and discover what category you fall into!</p>
+                
+                <div class="trivia-container">
+                    <div class="input-group">
+                        <label for="height">Height (cm):</label>
+                        <input type="number" id="height" placeholder="Enter your height in cm">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="weight">Weight (kg):</label>
+                        <input type="number" id="weight" placeholder="Enter your weight in kg">
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="calculateBMI()">Calculate BMI</button>
+                    <button class="btn btn-secondary" onclick="clearBMI()">Clear</button>
+                    
+                    <div id="bmi-result" class="result">
+                        <h3>Your BMI Result:</h3>
+                        <p id="bmi-value"></p>
+                        <p id="bmi-category"></p>
+                        <p id="bmi-description"></p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <aside class="sidebar-right">
+            <h3>Contact Me</h3>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-secondary" onclick="clearForm()">Clear</button>
+            </form>
+        </aside>
+
+        <footer class="footer">
+            <p>&copy; 2025 Sadia Islam | Created: January 2025</p>
+            <div>
+                <a href="https://github.com/Sadia1621" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/sadia-islam-0267a2350/" target="_blank">LinkedIn</a>
+                <a href="mailto:alex@example.com">Email</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Navigation functionality
+        document.getElementById('home-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            showPage('home');
+            setActiveLink('home-link');
+        });
+
+        document.getElementById('portfolio-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            showPage('portfolio');
+            setActiveLink('portfolio-link');
+        });
+
+        document.getElementById('trivia-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            showPage('trivia');
+            setActiveLink('trivia-link');
+        });
+
+        function showPage(page) {
+            // Hide all pages
+            document.getElementById('home-page').style.display = 'none';
+            document.getElementById('portfolio-page').style.display = 'none';
+            document.getElementById('trivia-page').style.display = 'none';
+            
+            // Show selected page
+            document.getElementById(page + '-page').style.display = 'block';
+        }
+
+        function setActiveLink(activeId) {
+            // Remove active class from all links
+            document.querySelectorAll('.navbar a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Add active class to clicked link
+            document.getElementById(activeId).classList.add('active');
+        }
+
+        // BMI Calculator functionality
+        function calculateBMI() {
+            const height = parseFloat(document.getElementById('height').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            
+            if (!height || !weight || height <= 0 || weight <= 0) {
+                alert('Please enter valid height and weight values.');
+                return;
+            }
+            
+            // Convert height from cm to meters
+            const heightInMeters = height / 100;
+            
+            // Calculate BMI
+            const bmi = weight / (heightInMeters * heightInMeters);
+            
+            // Determine category
+            let category, description, resultClass;
+            
+            if (bmi < 18.5) {
+                category = 'Underweight';
+                description = 'You may need to gain some weight. Consider consulting with a healthcare provider.';
+                resultClass = 'underweight';
+            } else if (bmi >= 18.5 && bmi < 25) {
+                category = 'Normal weight';
+                description = 'Great! You have a healthy weight. Keep up the good work!';
+                resultClass = 'normal';
+            } else if (bmi >= 25 && bmi < 30) {
+                category = 'Overweight';
+                description = 'You may want to consider a healthy diet and exercise routine.';
+                resultClass = 'overweight';
+            } else {
+                category = 'Obese';
+                description = 'Consider consulting with a healthcare provider for guidance on healthy weight management.';
+                resultClass = 'obese';
+            }
+            
+            // Display results
+            document.getElementById('bmi-value').textContent = `Your BMI is: ${bmi.toFixed(1)}`;
+            document.getElementById('bmi-category').textContent = `Category: ${category}`;
+            document.getElementById('bmi-description').textContent = description;
+            
+            const resultDiv = document.getElementById('bmi-result');
+            resultDiv.className = `result show ${resultClass}`;
+        }
+
+        function clearBMI() {
+            document.getElementById('height').value = '';
+            document.getElementById('weight').value = '';
+            document.getElementById('bmi-result').className = 'result';
+        }
+
+        // Contact form functionality
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+            clearForm();
+        });
+
+        function clearForm() {
+            document.getElementById('contact-form').reset();
+        }
+    </script>
+</body>
+</html>
